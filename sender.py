@@ -11,5 +11,16 @@ class UI:
 		return input(self.name + "@" + self.pc + ":> ")
 
 	#method to print the recieved message to the terminal
-	def print_message(string, sender_name, sender_pc):
-		print(sender_name + "@" + sender.pc + ":> "+string)
+	def print_message(string, friend):
+		print(sender.name + ":> "+string)
+	
+	def chooseFriend(friendlist):
+		for (i,f) in enumerate(friendlist):
+			print(f'Enter {i} for {f}')
+		
+		i = int(input())
+		while i not in range(len(friendlist)):
+			print('No such friend.Try again')
+			i = int(input())
+
+		return i
