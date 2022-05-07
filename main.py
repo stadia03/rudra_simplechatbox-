@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import getpass
 import os
+import friend
 from sender import UI
 from server import Server
 from friend import Friend
@@ -16,3 +17,12 @@ FRIENDS_LIST = [
 ui = UI(name=user_info["name"], pc=user_info["nodename"])
 
 inbox = Server(srv_cfg["port"], srv_cfg["size"])
+# TODO: Find some way to get an input of i from user
+outbox = friend.connect_to(FRIENDS_LIST[i])
+
+while True:
+    read = inbox.recv()
+    if read.data:
+        ui.print_message(read.data, FRIENDS_LIST[i])
+    wrote = ui.get_message()
+    outbox.send(wrote)
