@@ -17,7 +17,8 @@ FRIENDS_LIST = [
 ui = UI(name=user_info["name"], pc=user_info["nodename"])
 
 inbox = Server(srv_cfg["port"], srv_cfg["size"])
-# TODO: Find some way to get an input of i from user
+inbox.start()
+i = UI.chooseFriend(FRIENDS_LIST)
 outbox = friend.connect_to(FRIENDS_LIST[i])
 
 while True:
