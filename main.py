@@ -6,6 +6,7 @@ import friend
 from sender import UI
 from server import Server
 from friend import Friend
+from friendlist import FRIENDS_LIST
 import sys
 import select
 import argparse
@@ -19,11 +20,6 @@ print(f"{args.inbox_port[0]}")
 
 user_info = {"name": getpass.getuser(), "nodename": os.uname().nodename}
 srv_cfg = {"port": int(args.inbox_port[0]), "size": 1024}
-FRIENDS_LIST = [
-    Friend(
-        name=user_info["name"], ip="0.0.0.0", port=srv_cfg["port"], size=srv_cfg["size"]
-    )
-]
 
 ui = UI(name=user_info["name"], pc=user_info["nodename"])
 
