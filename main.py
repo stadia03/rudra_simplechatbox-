@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# multithreading
 import getpass
 import os
 import friend
