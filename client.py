@@ -12,7 +12,10 @@ class Client:
         self.socket = socket(AF_INET, SOCK_DGRAM)
 
     def send(self, msg):
-        self.socket.sendto(bytes(msg), (self.host, self.port))
+        self.socket.sendto(bytes(msg, "utf8"), (self.host, self.port))
+
+    def close(self):
+        self.socket.close()
 
 
 if __name__ == "__main__":

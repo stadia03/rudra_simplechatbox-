@@ -31,15 +31,22 @@ inbox = Server(srv_cfg["port"], srv_cfg["size"])
 inbox.start()
 i = UI.chooseFriend(FRIENDS_LIST)
 outbox = friend.connect_to(FRIENDS_LIST[i])
+outbox.start()
 
-while True:
-    read_socks, write_socks, err_socks = select.select(
-        [inbox.socket, outbox.socket, sys.stdin], [], []
-    )
-    for sock in read_socks:
-        if sock == inbox:
-            read = inbox.recv()
-            ui.print_message(read.data, FRIENDS_LIST[i])
-        else:
-            wrote = ui.get_message()
-            outbox.send(wrote)
+try:
+    while True:
+        read_socks, write_socks, err_socks = select.select(
+            [inbox.socket, sys.stdin], [], []
+        )
+        for sock in read_socks:
+            if sock == inbox:
+                read = inbox.recv()
+                ui.print_message(read.data, FRIENDS_LIST[i])
+            else:
+                wrote = ui.get_message()
+                outbox.send(wrote)
+except KeyboardInterrupt:
+    print("Ok, going away")
+finally:
+    inbox.close()
+    outbox.close()
