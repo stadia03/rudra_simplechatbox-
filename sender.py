@@ -12,7 +12,7 @@ class UI:
         return input(self.name + "@" + self.pc + ":> ")
 
     # method to print the recieved message to the terminal
-    def print_message(string, friend):
+    def print_message(self, string, friend):
         print(friend.name + ":> " + string)
 
     def chooseFriend(friendlist):
