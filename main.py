@@ -39,9 +39,9 @@ try:
             [inbox.socket, sys.stdin], [], []
         )
         for sock in read_socks:
-            if sock == inbox:
-                read = inbox.recv()
-                ui.print_message(read.data, FRIENDS_LIST[i])
+            if sock == inbox.socket:
+                read = inbox.recv().decode()
+                ui.print_message(read, FRIENDS_LIST[i])
             else:
                 wrote = ui.get_message()
                 outbox.send(wrote)
