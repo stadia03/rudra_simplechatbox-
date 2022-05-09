@@ -8,9 +8,17 @@ from server import Server
 from friend import Friend
 import sys
 import select
+import argparse
+
+parser = argparse.ArgumentParser(description="Talk to friends")
+parser.add_argument(
+    "inbox_port", metavar="N", type=int, nargs=1, help="set port for the inbox"
+)
+args = parser.parse_args()
+print(f"{args.inbox_port[0]}")
 
 user_info = {"name": getpass.getuser(), "nodename": os.uname().nodename}
-srv_cfg = {"port": 3939, "size": 1024}
+srv_cfg = {"port": int(args.inbox_port[0]), "size": 1024}
 FRIENDS_LIST = [
     Friend(
         name=user_info["name"], ip="0.0.0.0", port=srv_cfg["port"], size=srv_cfg["size"]
