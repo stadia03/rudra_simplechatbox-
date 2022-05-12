@@ -9,7 +9,7 @@ class UI:
 
     # method to get message from the user
     def get_message(self):
-        return input(self.name + "@" + self.pc + ":> ")
+        return input(self.name + ":> ")
 
     # method to print the recieved message to the terminal
     def print_message(self, string, friend):
